@@ -5,6 +5,9 @@
 une référence vers son emplacement mémoire*/
 
 #include <string_view>
+#include <iostream>
+#include <cstddef>
+#include <cctype>
 
 // classe de génération de token à réaliser
 #include "Token.hpp"
@@ -36,17 +39,24 @@ namespace axiom{
 
             // fonction qui passe tous les espace, jusqu'a tomber sur un caractère
             void skipWhiteSpaces(){
-                ;
+                while (!isAtEnd() && std::isblank(source_[position_])){
+                    std::cout << "Removing whitespace.." << std::endl;
+                    position_++;
+                };
             }
 
             // fonction qui retourne le caractere à la position actuelle
             char currentChar(){
-                ;
+                return source_[position_];
             }
 
-            // fonction permettant de verifier si l'on est à la fin de la string view ou non
+            // fonction permettant de verifier si l'on est à la fin de la string view
             bool isAtEnd(){
-                ;
+                if (source_.size()==position_){
+                    return true;
+                };
+
+                return false;
             }
 
 
