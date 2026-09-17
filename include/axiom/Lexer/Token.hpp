@@ -1,10 +1,11 @@
 #pragma once
+
 #include <string_view>
 
-using namespace std;
-
 namespace axiom{
+
     class Token{
+
         public:
 
             enum class Type {
@@ -20,7 +21,7 @@ namespace axiom{
             explicit Token(Type type, std::string_view value);
 
         private:
-            Type type_;
+            Type type_; 
             std::string_view value_; 
     };
 }
