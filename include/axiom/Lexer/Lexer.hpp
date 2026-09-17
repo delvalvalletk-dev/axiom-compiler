@@ -5,6 +5,7 @@
 #include <string_view>
 #include <cstddef>
 #include <cctype>
+#include <vector>
 
 /* Classe de std permettant de faire une vue vers un string,
 une référence vers son emplacement mémoire*/

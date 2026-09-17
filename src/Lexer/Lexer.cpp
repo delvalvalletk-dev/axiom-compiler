@@ -1,11 +1,46 @@
 #include "Lexer.hpp"
 
+#include <algorithm>
+
+
 axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
 }
 
 axiom::Token axiom::Lexer::nextToken(){
-    ;
+
+    // Initialisation du tableau des operateurs et du caractère actuel
+
+    std::vector<char> operators = {'+','-','='};
+    char actualChar = axiom::Lexer::currentChar();
+
+    // Si le caractere actuel est un chiffre
+    if (std::isdigit(actualChar)){
+
+        // on retourne un token d'entier (pour l'instant)
+        return axiom::Lexer::readNumber();
+    }
+
+    // Sinon, si le caractere actuel est une lettre de l'alphabet
+    else if (std::isalpha(actualChar)){
+
+        // on retourne un token d'identificateur (possible changement dans le futur)
+        return axiom::Lexer::readIdentifier();
+    }
+
+    // Sinon, si le caractere actuel est un operateur (présent dans la liste operators)
+    else if (std::find(operators.begin(), operators.end(), actualChar) != operators.end()){
+
+        // on retourne un token d'opérateurs
+        return axiom::Lexer::readOperator();        
+    }
+
+    // Sinon, on considere que c'est un élément spécial (possible changement dans le futur)
+    else{
+        return axiom::Lexer::readSpecialElement();         
+    }
+
+
 }
 
 axiom::Token axiom::Lexer::readOperator(){
