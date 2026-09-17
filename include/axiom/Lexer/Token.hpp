@@ -1,7 +1,12 @@
 #pragma once
+#include <string_view>
+
+using namespace std;
 
 namespace axiom{
+
     class Token{
+
         public:
 
             enum class Type {

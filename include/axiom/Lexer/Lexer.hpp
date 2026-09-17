@@ -27,9 +27,16 @@ namespace axiom{
              LET, etc... et le retourne sous forme de TOKEN */
             Token readIdentifier();
 
-
             // fonction qui a pour but de lire un nombre, et le retourne en forme de token
             Token readNumber();
+
+            // fonction dont le but est de lire un operateur et de retourner le bon Token
+            Token readOperator();
+
+            /* fonction dont le but est de lire un element special, notamment des retours
+               à la ligne, des points virgules, ...
+            */
+            Token readSpecialElement();
 
             // fonction de passage au prochain caractere
             void nextChar();
