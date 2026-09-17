@@ -10,7 +10,6 @@ axiom::Lexer::Lexer(std::string_view source){
 axiom::Token axiom::Lexer::nextToken(){
 
     // Initialisation du tableau des operateurs et du caractère actuel
-
     std::vector<char> operators = {'+','-','='};
     char actualChar = axiom::Lexer::currentChar();
 
