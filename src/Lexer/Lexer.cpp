@@ -9,11 +9,29 @@ axiom::Token axiom::Lexer::nextToken(){
 }
 
 axiom::Token axiom::Lexer::readIdentifier(){
-    ;
+    
+    std::string token_value = "";
+
+    while (std::isalpha(source_[position_])){
+        token_value += source_[position_];
+        axiom::Lexer::nextChar();    
+    };
+
+    axiom::Lexer::nextChar();
+
 }
 
 axiom::Token axiom::Lexer::readNumber(){
-    ;
+    
+    std::string token_value = "";
+
+    while (std::isdigit(source_[position_])){
+        token_value += source_[position_];
+        axiom::Lexer::nextChar();    
+    };
+
+    axiom::Lexer::nextChar();    
+
 }
 
 void axiom::Lexer::nextChar(){
