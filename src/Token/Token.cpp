@@ -1,6 +1,7 @@
 
 #include "Token.hpp"
 
-axiom::Token::Token(axiom::Token::Type type){
+axiom::Token::Token(axiom::Token::Type type, std::string_view value){
     type_ = type;
+    value_ = value;
 }

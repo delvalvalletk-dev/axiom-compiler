@@ -1,4 +1,5 @@
 #pragma once
+#include <string_view>
 
 using namespace std;
 
@@ -16,9 +17,10 @@ namespace axiom{
                 EndOfFile
             };
             
-            explicit Token(Type type);
+            explicit Token(Type type, std::string_view value);
 
         private:
-            Type type_; 
+            Type type_;
+            std::string_view value_; 
     };
 }
