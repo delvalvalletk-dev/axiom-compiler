@@ -2,9 +2,28 @@
 
 #include <algorithm>
 
-
+// implémentation du constructeur
 axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
+}
+
+//====================================================================//
+//=============== FONCTIONS DE RÉCUPÉRATION DES TOKENS ===============//
+//====================================================================//
+
+vector<axiom::Token> axiom::Lexer::fetchAllTokens(){
+
+    // Initialisation du vecteur contenant les tokens
+    std::vector<axiom::Token> tokens = {};
+
+    // tant que nous ne sommes pas arrivés a la fin du code source
+    while (!axiom::Lexer::isAtEnd()){
+
+        // on ajoute à la liste le prochain token
+        tokens.push_back(axiom::Lexer::nextToken());
+    }
+
+    return tokens;
 }
 
 axiom::Token axiom::Lexer::nextToken(){
@@ -12,6 +31,15 @@ axiom::Token axiom::Lexer::nextToken(){
     // Initialisation du tableau des operateurs et du caractère actuel
     std::vector<char> operators = {'+','-','='};
     char actualChar = axiom::Lexer::currentChar();
+
+    // on skippe les espaces jusqu'à tomber sur un autre caractere
+    axiom::Lexer::skipWhiteSpaces();
+
+    // retourne le token de fin de code
+    if (isAtEnd()) {
+        string_view end = "";
+        return axiom::Token(axiom::Token::Type::EndOfFile, end);
+    }
 
     // Si le caractere actuel est un chiffre
     if (std::isdigit(actualChar)){
@@ -41,6 +69,11 @@ axiom::Token axiom::Lexer::nextToken(){
 
 
 }
+
+
+//====================================================================//
+//========= FONCTIONS DE CRÉATION DES TOKENS DU CODE SOURCE ==========//
+//====================================================================//
 
 axiom::Token axiom::Lexer::readOperator(){
         
@@ -87,7 +120,7 @@ axiom::Token axiom::Lexer::readIdentifier(){
     axiom::Token::Type type = axiom::Token::Type::Identifier;
 
     // tant que le caractere actuel est une lettre de l'alphabet ([a-z] ou [A-Z])
-    while (std::isalpha(axiom::Lexer::currentChar())){
+    while (!axiom::Lexer::isAtEnd() && std::isalpha(axiom::Lexer::currentChar())){
 
         // ajoute le caractere à la valeur finale et passe au prochain
         value += source_[position_];
@@ -115,10 +148,10 @@ axiom::Token axiom::Lexer::readNumber(){
     axiom::Token::Type type = axiom::Token::Type::Integer;
 
     // tant que le caractere actuel est un= chiffre
-    while (std::isdigit(axiom::Lexer::currentChar())){
+    while (!axiom::Lexer::isAtEnd() && std::isdigit(axiom::Lexer::currentChar())){
 
         // ajoute le caractere à la valeur finale et passe au prochain
-        value += source_[position_];
+        value += axiom::Lexer::currentChar();
         axiom::Lexer::nextChar();    
     };
 
@@ -143,7 +176,7 @@ axiom::Token axiom::Lexer::readSpecialElement(){
     std::string value;
 
     // selon le caractere actuel
-    switch (axiom::Lexer::currentChar())
+    switch (axiom::Lexer::currentChar() && !axiom::Lexer::isAtEnd())
     {
         
         // si c'est un ; le type est semicolon
@@ -188,6 +221,11 @@ axiom::Token axiom::Lexer::readSpecialElement(){
     return token;
 
 }
+
+
+//====================================================================//
+//===== FONCTIONS UTILITAIRES AU DEPLACEMENT DANS LE CODE SOURCE =====//
+//====================================================================//
 
 void axiom::Lexer::nextChar(){
     ++position_;

@@ -16,7 +16,8 @@ namespace axiom{
                 Minus,
                 Equal,
                 Semicolon,
-                EndOfLine
+                EndOfLine,
+                EndOfFile
             };
             
             explicit Token(Type type, std::string_view value);

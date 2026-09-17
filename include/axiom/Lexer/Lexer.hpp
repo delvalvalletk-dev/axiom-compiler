@@ -19,8 +19,8 @@ namespace axiom{
         public:
             explicit Lexer(std::string_view source);
 
-            // fonction retournant le prochain token de la source
-            Token nextToken();
+            // fonction qui recupere tous les tokens du code source (source_)
+            vector<axiom::Token> fetchAllTokens(); 
 
         private:
 
@@ -38,6 +38,9 @@ namespace axiom{
                à la ligne, des points virgules, ...
             */
             Token readSpecialElement();
+
+            // fonction retournant le prochain token de la source
+            Token nextToken();            
 
             // fonction de passage au prochain caractere
             void nextChar();
