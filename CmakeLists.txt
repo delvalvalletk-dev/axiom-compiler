@@ -5,6 +5,12 @@ project(axium-compiler LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_executable(axium
+    src/main.cpp
+    src/lexer/Lexer.cpp
+    src/lexer/Token.cpp
+)
+
 target_include_directories(axium PRIVATE
     ${PROJECT_SOURCE_DIR}/include
 )
