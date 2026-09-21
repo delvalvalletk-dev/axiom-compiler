@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Lexer.hpp"
+#include "axiom/Lexer/Lexer.hpp"
 
 int main()
 {
