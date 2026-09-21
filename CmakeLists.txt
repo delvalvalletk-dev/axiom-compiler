@@ -5,8 +5,8 @@ project(axium-compiler LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(axium
-    src/main.cpp
+add_executable(lexer_tests
+    tests/lexer/LexerTests.cpp
     src/lexer/Lexer.cpp
     src/lexer/Token.cpp
 )
