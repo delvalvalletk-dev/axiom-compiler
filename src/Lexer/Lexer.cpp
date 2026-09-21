@@ -1,4 +1,4 @@
-#include "Lexer.hpp"
+#include "axiom/Lexer/Lexer.hpp"
 
 #include <algorithm>
 
