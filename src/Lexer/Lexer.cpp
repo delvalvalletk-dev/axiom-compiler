@@ -1,4 +1,4 @@
-#include "Lexer.hpp"
+#include "axiom/Lexer/Lexer.hpp"
 
 axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
