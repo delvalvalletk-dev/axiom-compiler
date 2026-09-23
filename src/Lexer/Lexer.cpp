@@ -4,7 +4,16 @@ axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
 }
 
+std::string_view axiom::Lexer::getSource(){
+    return axiom::Lexer::source_;
+}
+
+std::size_t axiom::Lexer::getPosition(){
+    return axiom::Lexer::position_;
+}
+
 axiom::Token axiom::Lexer::nextToken(){
+    
     ;
 }
 
