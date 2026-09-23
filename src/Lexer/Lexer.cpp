@@ -85,17 +85,17 @@ axiom::Token axiom::Lexer::readOperator(){
     switch (axiom::Lexer::currentChar())
     {
         case '+':
-            enum axiom::Token::Type type = axiom::Token::Type::Plus;
+            type = axiom::Token::Type::Plus;
             value="+";
             break;
     
         case '-':
-            enum axiom::Token::Type type = axiom::Token::Type::Minus;
+            type = axiom::Token::Type::Minus;
             value="-";
             break;
 
         case '=':
-            enum axiom::Token::Type type = axiom::Token::Type::Equal;
+            type = axiom::Token::Type::Equal;
             value="=";
             break;            
     }
@@ -176,7 +176,7 @@ axiom::Token axiom::Lexer::readSpecialElement(){
     std::string value;
 
     // selon le caractere actuel
-    switch (axiom::Lexer::currentChar() && !axiom::Lexer::isAtEnd())
+    switch (axiom::Lexer::currentChar())
     {
         
         // si c'est un ; le type est semicolon
