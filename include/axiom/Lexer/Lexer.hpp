@@ -22,6 +22,12 @@ namespace axiom{
             // fonction qui recupere tous les tokens du code source (source_)
             vector<axiom::Token> fetchAllTokens(); 
 
+            // fonction retournant la chaine de caractere passée en parametre (généralement le code)
+            std::string_view getSource();
+
+            // fonction retournant la position actuelle par rapport à la source
+            std::size_t getPosition();
+
         private:
 
             /* fonction qui a pour but de lire un identifiant, que ce soit INTEGER, LET, etc...

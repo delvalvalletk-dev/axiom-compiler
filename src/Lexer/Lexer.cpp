@@ -7,6 +7,7 @@ axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
 }
 
+<<<<<<< HEAD
 //====================================================================//
 //=============== FONCTIONS DE RÉCUPÉRATION DES TOKENS ===============//
 //====================================================================//
@@ -24,6 +25,19 @@ vector<axiom::Token> axiom::Lexer::fetchAllTokens(){
     }
 
     return tokens;
+=======
+std::string_view axiom::Lexer::getSource(){
+    return axiom::Lexer::source_;
+}
+
+std::size_t axiom::Lexer::getPosition(){
+    return axiom::Lexer::position_;
+}
+
+axiom::Token axiom::Lexer::nextToken(){
+    
+    ;
+>>>>>>> feature/lexer
 }
 
 axiom::Token axiom::Lexer::nextToken(){
