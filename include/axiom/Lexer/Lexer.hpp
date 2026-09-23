@@ -21,6 +21,8 @@ namespace axiom{
 
             // fonction qui recupere tous les tokens du code source (source_)
             vector<axiom::Token> fetchAllTokens(); 
+            // fonction retournant le prochain token de la source 
+            Token nextToken();
 
             // fonction retournant la chaine de caractere passée en parametre (généralement le code)
             std::string_view getSource();
