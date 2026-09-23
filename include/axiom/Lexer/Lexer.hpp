@@ -45,10 +45,7 @@ namespace axiom{
             /* fonction dont le but est de lire un element special, notamment des retours
                à la ligne, des points virgules, ...
             */
-            Token readSpecialElement();
-
-            // fonction retournant le prochain token de la source
-            Token nextToken();            
+            Token readSpecialElement();          
 
             // fonction de passage au prochain caractere
             void nextChar();
