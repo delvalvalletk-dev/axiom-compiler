@@ -18,7 +18,7 @@ namespace axiom{
         public:
             explicit Lexer(std::string_view source);
 
-            // fonction retournant le prochain token de la source
+            // fonction retournant le prochain token de la source 
             Token nextToken();
 
             // fonction retournant la chaine de caractere passée en parametre (généralement le code)
