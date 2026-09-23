@@ -7,6 +7,14 @@ axiom::Lexer::Lexer(std::string_view source){
     source_ = source;
 }
 
+std::string_view axiom::Lexer::getSource(){
+    return source_;
+}
+
+std::size_t axiom::Lexer::getPosition(){
+    return position_;
+}
+
 //====================================================================//
 //=============== FONCTIONS DE RÉCUPÉRATION DES TOKENS ===============//
 //====================================================================//
