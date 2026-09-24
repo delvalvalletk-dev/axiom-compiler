@@ -123,6 +123,73 @@ void testMultipleTokens()
     assert(lexer.getPosition() == 11);
 }
 
+void testMultipleWhitespaces()
+{
+    axiom::Lexer lexer("  hello   123\t+\n");
+
+    auto identifier = lexer.nextToken();
+    auto number = lexer.nextToken();
+    auto plus = lexer.nextToken();
+
+    assert(identifier.getType() == axiom::Token::Type::Identifier);
+    assert(identifier.getValue() == "hello");
+
+    assert(number.getType() == axiom::Token::Type::Integer);
+    assert(number.getValue() == "123");
+
+    assert(plus.getType() == axiom::Token::Type::Plus);
+    assert(plus.getValue() == "+");
+}
+
+void testTokensWithoutWhitespace()
+{
+    axiom::Lexer lexer("hello123+");
+
+    auto identifier = lexer.nextToken();
+    auto number = lexer.nextToken();
+    auto plus = lexer.nextToken();
+
+    assert(identifier.getValue() == "hello");
+    assert(number.getValue() == "123");
+    assert(plus.getValue() == "+");
+}
+
+void testMultipleOperators()
+{
+    axiom::Lexer lexer("+-=");
+
+    auto plus = lexer.nextToken();
+    auto minus = lexer.nextToken();
+    auto equal = lexer.nextToken();
+
+    assert(plus.getType() == axiom::Token::Type::Plus);
+    assert(minus.getType() == axiom::Token::Type::Minus);
+    assert(equal.getType() == axiom::Token::Type::Equal);
+
+    assert(lexer.getPosition() == 3);
+}
+
+void testEndOfFile()
+{
+    axiom::Lexer lexer("hello");
+
+    lexer.nextToken();
+
+    axiom::Token token = lexer.nextToken();
+
+    assert(token.getType() == axiom::Token::Type::EndOfFile);
+}
+
+void testWhitespaceAtEnd()
+{
+    axiom::Lexer lexer("hello   ");
+
+    lexer.nextToken();
+
+    axiom::Token token = lexer.nextToken();
+
+    assert(token.getType() == axiom::Token::Type::EndOfFile);
+}
 
 void testFetchAllTokens()
 {
@@ -142,7 +209,6 @@ void testFetchAllTokens()
     assert(tokens[2].getValue() == "+");
 }
 
-
 int main()
 {
     testIdentifier();
@@ -153,6 +219,12 @@ int main()
     testSemicolon();
     testWhitespace();
     testMultipleTokens();
+    testMultipleWhitespaces();
+    testTokensWithoutWhitespace();
+    testMultipleOperators();
+    testEndOfFile();
+    testWhitespaceAtEnd();
+
     testFetchAllTokens();
 
     std::cout << "All lexer tests passed!\n";
