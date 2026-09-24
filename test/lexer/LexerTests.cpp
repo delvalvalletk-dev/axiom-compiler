@@ -11,6 +11,8 @@ void testIdentifier()
 
     axiom::Token token = lexer.nextToken();
 
+    std::cout << "Identifier : " << token.getValue() << std::endl; 
+
     assert(token.getType() == axiom::Token::Type::Identifier);
     assert(token.getValue() == "hello");
 

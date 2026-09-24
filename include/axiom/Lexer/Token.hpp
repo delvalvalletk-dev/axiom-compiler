@@ -1,5 +1,5 @@
 #pragma once
-#include <string_view>
+#include <string>
 
 using namespace std;
 
@@ -24,11 +24,11 @@ namespace axiom{
             };
             
             //constructeur
-            explicit Token(Type type, std::string_view value);
+            explicit Token(Type type, std::string value);
 
             // methodes de récupération des valeurs privées
             Type getType();
-            std::string_view getValue();
+            std::string getValue();
 
 
         private:
@@ -37,6 +37,6 @@ namespace axiom{
             Type type_; 
 
             // le contenu du token (partie du code)
-            std::string_view value_; 
+            std::string value_; 
     };
 }

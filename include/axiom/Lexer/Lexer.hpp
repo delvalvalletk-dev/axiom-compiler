@@ -2,7 +2,7 @@
 #pragma once
 
 #include <iostream>
-#include <string_view>
+#include <string>
 #include <cstddef>
 #include <cctype>
 #include <vector>
@@ -17,7 +17,7 @@ namespace axiom{
 
     class Lexer{
         public:
-            explicit Lexer(std::string_view source);
+            explicit Lexer(std::string source);
 
             // fonction qui recupere tous les tokens du code source (source_)
             vector<axiom::Token> fetchAllTokens(); 
@@ -25,7 +25,7 @@ namespace axiom{
             Token nextToken();
 
             // fonction retournant la chaine de caractere passée en parametre (généralement le code)
-            std::string_view getSource();
+            std::string getSource();
 
             // fonction retournant la position actuelle par rapport à la source
             std::size_t getPosition();
@@ -65,7 +65,7 @@ namespace axiom{
 
             /*vue d'une chaine de caractere, utilisant la position initiale et la longueur
             de la chaine de caractere dans la mémoire*/ 
-            std::string_view source_;
+            std::string source_;
 
             // position actuelle dans la string view, limité par isAtEnd()
             std::size_t position_ = 0;
