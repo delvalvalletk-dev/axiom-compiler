@@ -30,13 +30,15 @@ namespace axiom{
             Type getType();
             std::string getValue();
 
+            // fonction de test, retourne le nom du type en tant que string
+            static std::string tokenTypeToString(Type type);
 
         private:
 
             // le type du token
             Type type_; 
-
             // le contenu du token (partie du code)
             std::string value_; 
+
     };
 }

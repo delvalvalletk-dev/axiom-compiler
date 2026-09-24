@@ -39,10 +39,10 @@ axiom::Token axiom::Lexer::nextToken(){
 
     // Initialisation du tableau des operateurs et du caractère actuel
     std::vector<char> operators = {'+','-','='};
-    char actualChar = axiom::Lexer::currentChar();
 
     // on skippe les espaces jusqu'à tomber sur un autre caractere
     axiom::Lexer::skipWhiteSpaces();
+    char actualChar = axiom::Lexer::currentChar();
 
     // retourne le token de fin de code
     if (isAtEnd()) {
@@ -135,9 +135,6 @@ axiom::Token axiom::Lexer::readIdentifier(){
 
     // on construit le token à l'aide du type, et de la valeur trouvé (ajouté au prochain commit)
     axiom::Token token = axiom::Token(type, token_value);
-    
-    // on passe au prochain caractere, une fois que l'identifier est terminé
-    axiom::Lexer::nextChar();
 
     // on retourne le token contenant l'identifiant
     return token;
@@ -162,9 +159,6 @@ axiom::Token axiom::Lexer::readNumber(){
     // on construit le token à l'aide du type, et de la valeur trouvé (ajouté au prochain commit)
     axiom::Token token = axiom::Token(type, token_value);
 
-    // on passe au prochain caractere, une fois que le nombre est terminé
-    axiom::Lexer::nextChar();    
-    
     // on retourne le token contenant le nombre
     return token;
 
@@ -235,7 +229,7 @@ void axiom::Lexer::skipWhiteSpaces(){
     while (!isAtEnd() && std::isspace(axiom::Lexer::currentChar())){
 
         // incremente la position
-        position_++;
+        nextChar();
     };
 }
 

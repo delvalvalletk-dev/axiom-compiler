@@ -92,6 +92,10 @@ void testWhitespace()
 
     axiom::Token token = lexer.nextToken();
 
+    std::cout << "Value : " << token.getValue() << std::endl; 
+    std::cout << "Type : " << axiom::Token::tokenTypeToString(token.getType()) << std::endl; 
+
+
     assert(token.getType() == axiom::Token::Type::Identifier);
     assert(token.getValue() == "hello");
 
