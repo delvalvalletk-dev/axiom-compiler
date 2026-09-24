@@ -147,19 +147,17 @@ axiom::Token axiom::Lexer::readIdentifier(){
 axiom::Token axiom::Lexer::readNumber(){
     
     // Initialisation de la valeur et du type du token
-    std::string value = "";
+    std::string token_value = "";
     axiom::Token::Type type = axiom::Token::Type::Integer;
 
     // tant que le caractere actuel est un= chiffre
     while (!axiom::Lexer::isAtEnd() && std::isdigit(axiom::Lexer::currentChar())){
 
         // ajoute le caractere à la valeur finale et passe au prochain
-        value += axiom::Lexer::currentChar();
+        token_value += axiom::Lexer::currentChar();
         axiom::Lexer::nextChar();    
     };
 
-    // création d'un string_view sur la valeur trouvé
-    std::string_view token_value = value;
 
     // on construit le token à l'aide du type, et de la valeur trouvé (ajouté au prochain commit)
     axiom::Token token = axiom::Token(type, token_value);
