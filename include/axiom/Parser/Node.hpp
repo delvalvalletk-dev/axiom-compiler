@@ -1,13 +1,14 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 namespace axiom{
 
     class Node{
 
         public:
-            ~Node();
+            virtual ~Node();
 
         private:
             ;
@@ -41,15 +42,16 @@ namespace axiom{
     };
 
     class NodeOperator : public Node {
-        
-        enum class TypeOperator{
-            ADD,
-            SUBSTRACT,
-            MULTIPLY,
-            DIVIDE
-        };
 
         public:
+
+            enum class TypeOperator{
+                ADD,
+                SUBSTRACT,
+                MULTIPLY,
+                DIVIDE
+            };
+
             explicit NodeOperator(TypeOperator type);
 
         private:
@@ -62,17 +64,17 @@ namespace axiom{
 
         public:
             
-            explicit NodeBinaryExpression(Node node_left, NodeOperator node_operator, Node node_right);
+            explicit NodeBinaryExpression(std::unique_ptr<Node> node_left, NodeOperator node_operator, std::unique_ptr<Node> node_right);
 
-            Node getNodeLeft();
             NodeOperator getNodeOperator();
-            Node getNodeRight();
+            std::unique_ptr<Node> getNodeLeft();
+            std::unique_ptr<Node> getNodeRight();
 
         private:
 
-            Node node_left_;
+            std::unique_ptr<Node> node_left_;
             NodeOperator node_operator_;
-            Node node_right_;
+            std::unique_ptr<Node> node_right_;
 
 
     };
